@@ -25,7 +25,22 @@ private String code;
 		g.drawString("nV", 10, 30);
 		
 		Point[] tab = getPoints();
+		int abs1, abs2, ord;
 		
+		for(int i = 0; i < tab.length; ++i) {
+			
+			abs1 = 30 + i*(getWidth()-60)/tab.length;
+			abs2 = 30 + (i+1)*(getWidth()-60)/tab.length;
+			if(tab[i].getY() == 1) ord = 30;
+			else ord = getHeight() - 30;
+			
+			g.drawLine(abs1, ord, abs2, ord);
+			
+			if(i != tab.length - 1 && tab[i].getY() != tab[i+1].getY()) {
+				
+				g.drawLine(abs2, 30, abs2, getHeight() - 30);
+			}
+		}
 	}
 	
 	public Point[] getPoints() {
