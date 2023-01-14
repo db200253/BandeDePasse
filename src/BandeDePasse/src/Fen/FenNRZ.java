@@ -15,7 +15,7 @@ public class FenNRZ extends JDialog {
   
   public FenNRZ(JFrame frame, String code) {
     
-    super(frame, "Miller");
+    super(frame, "NRZ");
     this.code = code;
     createComposants();
     setSize(500, 500);
