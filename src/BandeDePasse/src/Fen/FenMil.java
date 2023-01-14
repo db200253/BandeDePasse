@@ -1,9 +1,12 @@
 package Fen;
 
-import java.awt.Graphics;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import GPanel.GPanMil;
 
 @SuppressWarnings("serial")
 public class FenMil extends JDialog {
@@ -15,58 +18,27 @@ public class FenMil extends JDialog {
     super(frame, "Miller");
     this.code = code;
     createComposants();
-    setSize(500, 250);
+    setSize(500, 500);
     setLocationRelativeTo(frame);
-    setDefaultCloseOperation(EXIT_ON_CLOSE);
+    setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     setVisible(true);
   }
   
   public void createComposants() {
     
-    JPanel panel = new JPanel();
+	JPanel principal = new JPanel();
+	principal.setLayout(new BoxLayout(principal, BoxLayout.Y_AXIS));
+	
+	JPanel p1 = new JPanel();
+	JLabel trame = new JLabel("Trame binaire traduite : " + code);
+	p1.add(trame);
+	JPanel p2 = new GPanMil(code);
+	
+	
+	principal.add(p1);
+	principal.add(p2);
+	principal.add(Box.createVerticalGlue());
     
-    panel = graph(panel);
-    
-    setContentPane(panel);
-  }
-  
-  public Point[] getPoints() {
-	  
-	  Point[] result = new Point[code.length()];
-	  Point courant;
-	  int abscisse = 0;
-	  int ordonnee;
-	  
-	  for(int i = 0; i < code.length(); ++i) {
-		  
-		  if(code.charAt(i) == '1') {
-			  
-			  ordonnee = 1;
-		  } else {
-			  
-			  ordonnee = -1;
-		  }
-		  
-		  courant = new Point(abscisse, ordonnee);
-		  result[i] = courant;
-		  ++abscisse;
-	  }
-	  
-	  return result;
-  }
-  
-  public JPanel graph(JPanel p) {
-	  
-	  Graphics g;
-	  g = getGraphics();
-	  p.paintComponents(g);
-	  
-	  g.drawLine(30, getHeight()/2, getWidth() - 30, getHeight()/2);
-	  g.drawString("X", getWidth() - 30, getHeight() - 20);
-	  
-	  g.drawLine(30, 30, 30, getHeight() - 30);
-	  g.drawString("Y", 20, 30);
-	  
-	  return p;
+    setContentPane(principal);
   }
 }
