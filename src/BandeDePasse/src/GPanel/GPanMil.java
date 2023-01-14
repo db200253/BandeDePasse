@@ -25,30 +25,35 @@ private String code;
 		g.drawString("nV", 10, 30);
 		
 		Point[] tab = getPoints();
-		int abs1, abs2, ord1, ord2;
+		int abs1, abs2, ord1 = 30 , ord2 = getHeight() - 30, tmp;
 		
 		for(int i = 0; i < tab.length; ++i) {
 			
 			abs1 = 30 + i*(getWidth()-60)/tab.length;
 			abs2 = 30 + (i+1)*(getWidth()-60)/tab.length;
 			
+			
 			if(tab[i].getY() == 1) {
+			
+				g.drawLine(abs1, ord1, (abs2+abs1)/2, ord1);
+				g.drawLine((abs2+abs1)/2, 30, (abs2+abs1)/2, getHeight() - 30);
+				g.drawLine((abs2+abs1)/2, ord2, abs2, ord2);
 				
-				ord1 = 30; 
-				ord2 = getHeight() - 30;
+				tmp = ord1;
+				ord1 = ord2;
+				ord2 = tmp;
 			} else {
 				
-				ord1 = getHeight() - 30;
-				ord2 = 30;
+				g.drawLine(abs1, ord1, abs2, ord1);
 			}
 			
-			g.drawLine(abs1, ord1, (abs2+abs1)/2, ord1);
-			g.drawLine((abs2+abs1)/2, 30, (abs2+abs1)/2, getHeight() - 30);
-			g.drawLine((abs2+abs1)/2, ord2, abs2, ord2);
-			
-			if(i != tab.length - 1 && tab[i].getY() == tab[i+1].getY()) {
+			if(i < tab.length - 1 && tab[i].getY() == -1 && tab[i+1].getY() == -1) {
 				
 				g.drawLine(abs2, 30, abs2, getHeight() - 30);
+				
+				tmp = ord1;
+				ord1 = ord2;
+				ord2 = tmp;
 			}
 		}
 	}
