@@ -94,7 +94,7 @@ public class Fenetre extends JFrame implements ActionListener {
     if(e.getSource() == bouton) {
     
       String zone = area.getText();
-      String nomCode = code.getSelectedItem().toString();
+      String nomCode = (String)code.getSelectedItem();
     
       for(int i = 0; i < zone.length(); ++i) {
       
@@ -106,12 +106,18 @@ public class Fenetre extends JFrame implements ActionListener {
         }
       }
       
-      switch(nomCode) {
-      
-        case "NRZ" : SwingUtilities.invokeLater(() -> new FenNRZ(this, zone));/*
-        case "Manchester" : SwingUtilities.invokeLater(() -> new FenMan(this, zone));
-        case "Manchester diff." : SwingUtilities.invokeLater(() -> new FenManD(this, zone));
-        case "Miller" : SwingUtilities.invokeLater(() -> new FenMil(this, zone));*/
+      if(nomCode == "NRZ") {
+    	  
+    	  SwingUtilities.invokeLater(() -> new FenNRZ(this, zone));
+      } else if (nomCode == "Manchester") {
+    	  
+    	  SwingUtilities.invokeLater(() -> new FenMan(this, zone));
+      } else if (nomCode == "Manchester diff.") {
+    	  
+    	  SwingUtilities.invokeLater(() -> new FenManD(this, zone));
+      } else {
+    	  
+    	  SwingUtilities.invokeLater(() -> new FenMil(this, zone));
       }
     }
   }
