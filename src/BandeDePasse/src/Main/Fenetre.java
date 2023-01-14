@@ -5,6 +5,8 @@ import Fen.*;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.InputMismatchException;
+
 import javax.swing.*;
 
 
@@ -96,15 +98,20 @@ public class Fenetre extends JFrame implements ActionListener {
     
       for(int i = 0; i < zone.length(); ++i) {
       
-        assert(zone.charAt(i) == 0 || zone.charAt(i) == 1);
+        switch(zone.charAt(i)) {
+        
+        	case '0' : break;
+        	case '1' : break;
+        	default : throw new InputMismatchException();
+        }
       }
       
       switch(nomCode) {
       
-        case "NRZ" : SwingUtilities.invokeLater(() -> new FenNRZ(zone));
-        case "Manchester" : SwingUtilities.invokeLater(() -> new FenMan(zone));
-        case "Manchester diff." : SwingUtilities.invokeLater(() -> new FenManD(zone));
-        case "Miller" : SwingUtilities.invokeLater(() -> new FenMil(zone));
+        case "NRZ" : SwingUtilities.invokeLater(() -> new FenNRZ(this, zone));/*
+        case "Manchester" : SwingUtilities.invokeLater(() -> new FenMan(this, zone));
+        case "Manchester diff." : SwingUtilities.invokeLater(() -> new FenManD(this, zone));
+        case "Miller" : SwingUtilities.invokeLater(() -> new FenMil(this, zone));*/
       }
     }
   }
