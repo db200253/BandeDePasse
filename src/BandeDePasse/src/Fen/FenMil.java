@@ -1,8 +1,9 @@
 package Fen;
 
+import javax.swing.JDialog;
 import javax.swing.JInternalFrame;
 
-public class FenMil implements FenCode {
+public class FenMil extends JDialog {
   
   private String code;
   
@@ -11,7 +12,6 @@ public class FenMil implements FenCode {
     this.code = code;
   }
   
-  @Override
   public void draw() {
     
     JInternalFrame fenetre = new JInternalFrame("Miller", true, true);

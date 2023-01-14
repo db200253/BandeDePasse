@@ -1,8 +1,9 @@
 package Fen;
 
+import javax.swing.JDialog;
 import javax.swing.JInternalFrame;
 
-public class FenManD implements FenCode {
+public class FenManD extends JDialog {
   
   private String code;
   
@@ -11,7 +12,6 @@ public class FenManD implements FenCode {
     this.code = code;
   }
   
-  @Override
   public void draw() {
     
     JInternalFrame fenetre = new JInternalFrame("Manchester Diff.", true, true);

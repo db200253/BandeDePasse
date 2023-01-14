@@ -9,7 +9,11 @@ import javax.swing.*;
 
 
 @SuppressWarnings("serial")
-public class Fenetre extends JFrame /*implements ActionListener*/{
+public class Fenetre extends JFrame implements ActionListener {
+  
+  private JTextArea area = new JTextArea(1, 15);
+  JComboBox<String> code = new JComboBox<>();
+  JButton bouton = new JButton("Draw !");
   
   public Fenetre(){
     
@@ -38,14 +42,13 @@ public class Fenetre extends JFrame /*implements ActionListener*/{
 	  principal.add(p1);
 	  principal.add(p2);
 	  principal.add(p3);
-	  //bouton.addActionListener(this);
+	  bouton.addActionListener(this);
 	  setContentPane(principal);
   }
   
   public JPanel getP1(JPanel p) {
 	  
 	  JLabel titre1 = new JLabel("Entrez la trame binaire : ", SwingConstants.CENTER);
-	  JTextArea area = new JTextArea(1, 15);  
 	  
 	  p.add(Box.createRigidArea(new Dimension(10, 0)));
 	  p.add(titre1);
@@ -59,8 +62,8 @@ public class Fenetre extends JFrame /*implements ActionListener*/{
   
   public JPanel getP2(JPanel p) {
 	  
-	  JLabel titre2 = new JLabel("Choisissez le code Ã  utiliser :", SwingConstants.CENTER);
-	  JComboBox<String> code = new JComboBox<>();
+	  JLabel titre2 = new JLabel("Choisissez le code à utiliser :", SwingConstants.CENTER);
+	  
 	  code.addItem("NRZ");
 	  code.addItem("Manchester");
 	  code.addItem("Manchester diff.");
@@ -78,13 +81,12 @@ public class Fenetre extends JFrame /*implements ActionListener*/{
   
   public JPanel getP3(JPanel p) {
 	  
-	  JButton bouton = new JButton("Draw !");
 	  p.add(bouton);
 	  
 	  return p;
   }
 
-  /*@Override
+  @Override
   public void actionPerformed(ActionEvent e) {
     
     if(e.getSource() == bouton) {
@@ -97,15 +99,13 @@ public class Fenetre extends JFrame /*implements ActionListener*/{
         assert(zone.charAt(i) == 0 || zone.charAt(i) == 1);
       }
       
-      FenCode fc;
-      
       switch(nomCode) {
       
-        case "NRZ" : fc = new FenNRZ(zone); fc.draw();
-        case "Manchester" : fc = new FenMan(zone); fc.draw();
-        case "Manchester diff." : fc = new FenManD(zone); fc.draw();
-        case "Miller" : fc = new FenMil(zone); fc.draw();
+        case "NRZ" : SwingUtilities.invokeLater(() -> new FenNRZ(zone));
+        case "Manchester" : SwingUtilities.invokeLater(() -> new FenMan(zone));
+        case "Manchester diff." : SwingUtilities.invokeLater(() -> new FenManD(zone));
+        case "Miller" : SwingUtilities.invokeLater(() -> new FenMil(zone));
       }
     }
-  }*/
+  }
 }

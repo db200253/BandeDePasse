@@ -2,7 +2,7 @@ package Fen;
 
 import javax.swing.*;
 
-public class FenNRZ implements FenCode {
+public class FenNRZ extends JDialog{
   
   private String code;
   
@@ -11,7 +11,6 @@ public class FenNRZ implements FenCode {
     this.code = code;
   }
   
-  @Override
   public void draw() {
     
     JInternalFrame fenetre = new JInternalFrame("NRZ", true, true);
